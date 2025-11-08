@@ -15,7 +15,7 @@
         "CppUtilsO3deGem"
     ],
     "platforms": [
-        ""
+        "iOS","Linux","Android","Windows"
     ],
     "icon_path": "preview.png",
     "requirements": "",
