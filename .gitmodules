@@ -1,0 +1,3 @@
+[submodule "CppUtils"]
+	path = 3rdParty/CppUtils
+	url = https://github.com/ChristianHinkle/CppUtils
