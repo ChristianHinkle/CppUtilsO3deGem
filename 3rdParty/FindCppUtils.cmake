@@ -1,14 +1,20 @@
 # Copyright (c) 2023-2025 Christian Hinkle, Brian Hinkle.
 
-get_property(my_gem_root GLOBAL PROPERTY "@GEMROOT:CppUtilsO3deGem@")
+set(MY_GEM_NAME "CppUtilsO3deGem")
+
+if(TARGET 3rdParty::${MY_GEM_NAME})
+    return()
+endif()
+
+get_property(MY_GEM_ROOT GLOBAL PROPERTY "@GEMROOT:${MY_GEM_NAME}@")
 
 ly_add_external_target(
     NAME CppUtils
-    3RDPARTY_ROOT_DIRECTORY "${my_gem_root}/3rdParty/CppUtils"
+    3RDPARTY_ROOT_DIRECTORY "${MY_GEM_ROOT}/3rdParty/CppUtils"
     VERSION
 )
 
-unset(my_gem_root)
+unset(MY_GEM_ROOT)
 
 #
 # @Christian: TODO: [todo][temporary[engine]][cmake] Use the `o3de_fixup_fetchcontent_targets` function on all the 3rdParty targets
@@ -18,3 +24,5 @@ unset(my_gem_root)
 #
 # For now, we'll just have the `ly_add_target` calls use the "CppUtils::" targets directly - without the "3rdParty::" prefix.
 #
+
+unset(MY_GEM_NAME)
