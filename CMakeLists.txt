@@ -1,5 +1,5 @@
 
-o3de_gem_setup("CppUtilsO3deGem")
+o3de_gem_setup("CppUtils")
 
 add_subdirectory(3rdParty)
 

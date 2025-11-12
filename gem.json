@@ -1,7 +1,7 @@
 {
-    "gem_name": "CppUtilsO3deGem",
+    "gem_name": "CppUtils",
     "version": "1.0.0",
-    "display_name": "CppUtilsO3deGem",
+    "display_name": "CppUtils",
     "license": "",
     "license_url": "",
     "origin": "",
@@ -12,7 +12,7 @@
         "Gem"
     ],
     "user_tags": [
-        "CppUtilsO3deGem"
+        "CppUtils"
     ],
     "platforms": [
         "iOS","Linux","Android","Windows"

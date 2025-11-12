@@ -1,6 +1,6 @@
 # Copyright (c) 2023-2025 Christian Hinkle, Brian Hinkle.
 
-set(MY_GEM_NAME "CppUtilsO3deGem")
+set(MY_GEM_NAME "CppUtils")
 
 if(TARGET 3rdParty::${MY_GEM_NAME})
     return()
