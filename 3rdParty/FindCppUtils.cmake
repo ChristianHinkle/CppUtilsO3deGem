@@ -25,4 +25,53 @@ unset(MY_GEM_ROOT)
 # For now, we'll just have the `ly_add_target` calls use the "CppUtils::" targets directly - without the "3rdParty::" prefix.
 #
 
+# @Christian: Here is an idea on conditionally linking statically vs dynamically based on whether we are builing the game monolithically or
+# not. This isn't a full solution because we can't control how transient dependencies are being linked.
+
+# Choose the linkable library type based on whether we will build monolithically or not.
+if(LY_MONOLITHIC_GAME)
+    set(LinkableLibraryName "Static")
+else()
+    set(LinkableLibraryName "Shared")
+endif()
+
+# List out all the target names that are linkable (e.g., have static and shared libraries).
+set(LinkableLibraryTargetBaseNames
+    CppUtils::Core
+    CppUtils::Misc
+)
+
+# Generate the alias targets which are prefixed with "3rdParty::" as per the naming convention of O3DE's 3rdParty library usage.
+foreach(TargetBaseName IN LISTS ${LinkableLibraryTargetBaseNames})
+
+    get_target_property(TargetFullName ${TargetBaseName}::${LinkableLibraryName} ALIASED_TARGET)
+    add_library(3rdParty::${TargetBaseName}.Linkable ALIAS ${TargetFullName})
+
+endforeach()
+
+unset(LinkableLibraryName)
+
+# List out all the target names that have public API libraries (e.g., interface libraries).
+set(ApiLibraryTargetBaseNames
+    CppUtils::Concepts
+)
+
+# Assume that linkable library targets also have public API targets.
+list(APPEND ApiLibraryTargetBaseNames LinkableLibraryTargetBaseNames)
+
+unset(LinkableLibraryTargetBaseNames)
+
+# Choose the API library name.
+set(ApiLibraryName "Include")
+
+# Generate the alias targets which are prefixed with "3rdParty::" as per the naming convention of O3DE's 3rdParty library usage.
+foreach(TargetBaseName IN LISTS ${ApiLibraryTargetBaseNames})
+
+    get_target_property(TargetFullName ${TargetBaseName}::${ApiLibraryName} ALIASED_TARGET)
+    add_library(3rdParty::${TargetBaseName}.API ALIAS ${TargetFullName})
+
+endforeach()
+
+unset(ApiLibraryName)
+
 unset(MY_GEM_NAME)
