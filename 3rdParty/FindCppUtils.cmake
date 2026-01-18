@@ -25,4 +25,5 @@ unset(MY_GEM_ROOT)
 # For now, we'll just have the `ly_add_target` calls use the "CppUtils::" targets directly - without the "3rdParty::" prefix.
 #
 
-unset(MY_GEM_NAME)
+# @Christian: TODO: [todo][cmake] We could do conditional static vs dynamic linking based on whether we are builing the game monolithically or
+# not. We would have to be able to control how transient dependencies are being linked also, though.
